@@ -1,0 +1,31 @@
+Scrapy Notes
+------------
+
+on the FORM:
+    Requesting the form was a bit problematic.
+    When requesting the form with values a response was sent with the form filled out
+    but the data requested from the form was not sent.
+
+    Upon a Request(response) post the correct response was sent with the requested data.
+    This two step Request is implemented in the spider.
+
+on SPIDER METHOD:
+    I wanted to receive the Front page, extract the data items and next_page links, and then
+    request the next_pages to parse, all within the 'spider manager'.  The spider manager contains
+    what the spider will do with the responses and not how it will handle the response.  Also, the
+    spider manager strictly deals only with the Front Page.
+
+    I wanted to keep the function of parsing/loading the data away from the 'spider manager'.
+
+    An obstacle to overcome is the fact that the spider can only yield Request, BaseItems or None.
+    This becomes a problem when the spider manager has to deal with parsing the front page (yield)
+    and also requesting the next_pages.
+
+    There are three item container that I created to classify the type of data being extracted.
+    This added a burden because the return/yield can only process one request/baseitem at a time.
+    To overcome this limitation, I defined a function rePackIt to repackage the three item
+    containers as a new single baseitem and return the items.
+
+    Because of the method HMA presents their IP address in the markup I had to create a processor
+    that goes through the html and select the IP addresses (GetIPAddresses()).  Also, the
+    loaders had to be tweaked to convert unicode to integers for some items.
