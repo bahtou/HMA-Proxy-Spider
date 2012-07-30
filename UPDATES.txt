@@ -1,0 +1,14 @@
+July 30, 2012:
+    piplelines_adbapi.py
+
+    Altered the 'pipelines.py' file to integrate with
+    Twisted RDBMS support with adbapi.
+
+    From the Abstract:
+        Twisted is an asynchronous networking framework, but most database API
+        implementations unfortunately have blocking interfaces -- for this reason, twisted.
+        enterprise.adbapi was created. It is a non-blocking interface to the standardized
+        DB-API 2.0 API, which allows you to access a number of different RDBMSes.
+
+    Source:
+        http://twistedmatrix.com/documents/current/core/howto/rdbms.html
